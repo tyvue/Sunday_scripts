@@ -1,0 +1,30 @@
+---
+title: "Gapminder Report"
+author: "Touyia Vue"
+date: "April 19, 2015"
+output: html_document
+---
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r}
+gap.in <- read.table("output/combined_gapMinder.tsv", sep = "\t", header = TRUE)
+summary(gap.in)
+```
+
+You can also embed plots, for example:
+
+```{r, echo=FALSE}
+plot1 <- gap.in[gap.in[,1] == "China",c(2,6)]
+plot2 <- gap.in[gap.in[,1] == "Guinea",c(2,6)]
+plot3 <- gap.in[gap.in[,1] == "Vietnam",c(2,6)]
+plot(x=plot1[,1], y=plot1[,2], xlab="Year", ylab="GDP")
+points(x=plot2[,1], y=plot2[,2], col="blue") 
+points(x=plot3[,1], y=plot3[,2], col="red")
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+
