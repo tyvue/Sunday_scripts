@@ -1,5 +1,5 @@
 ---
-title: "Gapminder Report"
+title: "R_markdown_continent"
 author: "Touyia Vue"
 date: "April 19, 2015"
 output: html_document
@@ -17,16 +17,11 @@ summary(gap.in)
 You can also embed plots, for example:
 
 ```{r, echo=FALSE}
-plot1 <- gap.in[gap.in[,1] == "Afghanistan",c(2,6)]
-plot2 <- gap.in[gap.in[,1] == "Guinea",c(2,6)]
-plot3 <- gap.in[gap.in[,1] == "Austria",c(2,6)]
-plot4 <- gap.in[gap.in[,1] == "China",c(2,6)]
-plot(x=plot1[,1], y=plot1[,2], xlab="Year", ylab="GDP")
-points(x=plot2[,1], y=plot2[,2], col="blue") 
-points(x=plot3[,1], y=plot3[,2], col="red")
-points(x=plot4[,1], y=plot4[,2], col="orange")
+library("dplyr")
+gap.in %>%
+  group_by(continent) %>%
+  select(continent, lifeExp) %>%
+  summarize(mean= mean(lifeExp), min=min(lifeExp), max=max(lifeExp))
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
-
-
